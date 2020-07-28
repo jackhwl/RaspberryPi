@@ -4,3 +4,4 @@
 * Pi2 & Pi4 use VNC to release the HDMI, mouse, keyboard wires.
 * Pi2 add 2FA to [SSH](https://www.raspberrypi.org/blog/setting-up-two-factor-authentication-on-your-raspberry-pi/) & [VNC](https://www.raspberrypi.org/forums/viewtopic.php?t=226283)
 * [The Crackerjoke-a-tron](https://www.raspberrypi.org/blog/the-crackerjoke-a-tron/)
+* [How to Connect a Liquid Crystal Display up to the Arduino](https://www.youtube.com/watch?v=z-j1j6XIUFI&t=128s)
