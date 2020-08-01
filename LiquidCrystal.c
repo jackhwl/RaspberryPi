@@ -67,6 +67,12 @@ void playTheTone(char note, int duration) {
   }
 }
 
+void clearLCDLine(int line){
+ for(int n = 0; n < 16; n++) {  // 20 indicates symbols in line. For 2x16 LCD write - 16
+   lcd.setCursor(n,line);
+   lcd.print(" ");
+ }
+}
 
 void setup() {
   // set up the LCD's number of columns and rows:
@@ -98,6 +104,9 @@ void loop() {
   
   if ((unsigned long)(currentMillis - previousMillis)/1000 >= resetTime) {
     previousMillis = currentMillis;
+    lcd.setCursor(0, 1);
+    lcd.print("It's Tea Time!");
     playMusic();
+    clearLCDLine(1);
   }
 }
