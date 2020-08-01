@@ -48,18 +48,56 @@
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
+int buzzerPin = 8;
+int tempo = 200;
+char notes[] = "eeeeeeegcde fffffeeeeddedg";
+int duration[] = {1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2};
+
+const int resetTime = 3600;
+unsigned long previousMillis = 0;
+
+void playTheTone(char note, int duration) {
+  char notesName[] = { 'c', 'd', 'e', 'f', 'g' };
+  int tones[] = { 261, 293, 329, 349, 392 };
+
+  for (int i = 0; i <= sizeof(tones)/sizeof(int)-1; i++) {
+    if (note == notesName[i]) {
+      tone(buzzerPin, tones[i], duration);
+    }
+  }
+}
+
+
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
   lcd.print("Hello viGlobal!");
-  
+
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void playMusic() {
+    for (int i = 0; i <= sizeof(notes)/sizeof(char)-1; i++) {
+      if (notes[i] == ' ') {
+        delay(duration[i] * tempo);
+      } else {
+        playTheTone(notes[i], duration[i] * tempo);
+      }
+      delay((tempo*2)*duration[i]);
+    }
 }
 
 void loop() {
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
-  lcd.print(millis() / 1000);
+  unsigned long currentMillis = millis();
+  // print the number of seconds since rollover:
+  lcd.print((currentMillis - previousMillis)/1000);
+  
+  if ((unsigned long)(currentMillis - previousMillis)/1000 >= resetTime) {
+    previousMillis = currentMillis;
+    playMusic();
+  }
 }
