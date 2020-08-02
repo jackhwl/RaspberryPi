@@ -48,6 +48,10 @@
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
+const int resetTime = 3600;
+unsigned long previousMillis = 0;
+
+
 /* 
   Nokia Tune
   Connect a piezo buzzer or speaker to pin 8 or select a new pin.
@@ -146,8 +150,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define NOTE_DS8 4978
 #define REST      0
 
-// change this to make the song slower or faster
-int tempo = 180;
+#define ELEMENTSIZE(x)   (sizeof(x) / sizeof(x[0]))
 
 // change this to whichever pin you want to use
 int buzzer = 8;
@@ -156,30 +159,52 @@ int buzzer = 8;
 // a 4 means a quarter note, 8 an eighteenth , 16 sixteenth, so on
 // !!negative numbers are used to represent dotted notes,
 // so -4 means a dotted quarter note, that is, a quarter plus an eighteenth!!
-int melody[] = {
+
+int melody_Nokia[] = {
 
   // Nokia Ringtone 
   // Score available at https://musescore.com/user/29944637/scores/5266155
+  // tempo 180
   
   NOTE_E5, 8, NOTE_D5, 8, NOTE_FS4, 4, NOTE_GS4, 4, 
   NOTE_CS5, 8, NOTE_B4, 8, NOTE_D4, 4, NOTE_E4, 4, 
   NOTE_B4, 8, NOTE_A4, 8, NOTE_CS4, 4, NOTE_E4, 4,
   NOTE_A4, 2, 
 };
-// sizeof gives the number of bytes, each int value is composed of two bytes (16 bits)
-// there are two values per note (pitch and duration), so for each note there are four bytes
-int notes = sizeof(melody) / sizeof(melody[0]) / 2;
 
-// this calculates the duration of a whole note in ms
-int wholenote = (60000 * 4) / tempo;
+int melody_HappyBirthDay[] = {
+
+  // Happy Birthday
+  // Score available at https://musescore.com/user/8221/scores/26906
+  // tempo 140
+
+  NOTE_C4,4, NOTE_C4,8, 
+  NOTE_D4,-4, NOTE_C4,-4, NOTE_F4,-4,
+  NOTE_E4,-2, NOTE_C4,4, NOTE_C4,8, 
+  NOTE_D4,-4, NOTE_C4,-4, NOTE_G4,-4,
+  NOTE_F4,-2, NOTE_C4,4, NOTE_C4,8,
+
+  NOTE_C5,-4, NOTE_A4,-4, NOTE_F4,-4, 
+  NOTE_E4,-4, NOTE_D4,-4, NOTE_AS4,4, NOTE_AS4,8,
+  NOTE_A4,-4, NOTE_F4,-4, NOTE_G4,-4,
+  NOTE_F4,-2,
+ 
+};
 
 int divider = 0, noteDuration = 0;
 
+void playTheTone(int melody[], int sizeOfMelody, int tempo) {
+  // change this to make the song slower or faster
+  //int tempo = 180;
 
-const int resetTime = 3600;
-unsigned long previousMillis = 0;
+  // sizeof gives the number of bytes, each int value is composed of two bytes (16 bits)
+  // there are two values per note (pitch and duration), so for each note there are four bytes
+  //int notes = sizeof(melody) / sizeof(melody[0]) / 2;
+  int notes = sizeOfMelody / 2;
 
-void playTheTone() {
+  // this calculates the duration of a whole note in ms
+  int wholenote = (60000 * 4) / tempo;
+
   // iterate over the notes of the melody.
   // Remember, the array is twice the number of notes (notes + durations)
   for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
@@ -234,7 +259,8 @@ void loop() {
     previousMillis = currentMillis;
     lcd.setCursor(0, 1);
     lcd.print("It's Tea Time!");
-    playTheTone();
+    playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180);
+    //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140);
     clearLCDLine(1);
   }
 }
