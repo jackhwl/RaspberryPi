@@ -200,7 +200,7 @@ int melody_HappyBirthDay[] = {
 
 int divider = 0, noteDuration = 0;
 
-void playTheTone(int melody[], int sizeOfMelody, int tempo)
+void playTheTone(int melody[], int sizeOfMelody, int tempo, int buzzer)
 {
     // change this to make the song slower or faster
     //int tempo = 180;

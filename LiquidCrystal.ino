@@ -108,8 +108,8 @@ void loop()
     previousMillis = currentMillis;
     lcd.setCursor(0, 1);
     lcd.print(" It's Tea Time! ");
-    playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180);
-    //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140);
+    playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
+    //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
     clearLCDLine(1);
   }
 }
