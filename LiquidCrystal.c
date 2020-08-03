@@ -192,6 +192,7 @@ int melody_HappyBirthDay[] = {
 };
 
 int divider = 0, noteDuration = 0;
+char buffer [8];
 
 void playTheTone(int melody[], int sizeOfMelody, int tempo) {
   // change this to make the song slower or faster
@@ -247,13 +248,14 @@ void setup() {
   pinMode(buzzer, OUTPUT);
 }
 
-char getNormalTime(unsigned long seconds){
-  char buffer [10];
+void setTimeBuffer(char* buffer, unsigned long seconds, bool withHour){
   uint8_t hours, minutes;
   minutes = seconds / 60;
   hours = minutes / 60;
-  sprintf (buffer, "%02u:%02u:%02u", hours, minutes, seconds%60);
-  return buffer;
+  if (withHour)
+    sprintf (buffer, "%02u:%02u:%02u", hours, minutes, seconds%60);
+  else 
+    sprintf (buffer, "%02u:%02u", minutes, seconds%60);
 }
 
 void loop() {
@@ -262,16 +264,12 @@ void loop() {
   lcd.setCursor(0, 1);
   unsigned long currentMillis = millis();
   // print the number of seconds since rollover:
-  lcd.print((currentMillis - previousMillis)/1000);
+  setTimeBuffer(buffer, (currentMillis - previousMillis)/1000, false);
+  lcd.write(buffer);
+  //lcd.print((currentMillis - previousMillis)/1000);
   lcd.setCursor(8, 1);
 
-  char buffer [10];
-  uint8_t hours, minutes, seconds;
-  seconds = currentMillis/1000;
-  minutes = seconds / 60;
-  hours = minutes / 60;
-  sprintf (buffer, "%02u:%02u:%02u", hours, minutes, seconds%60);
-
+  setTimeBuffer(buffer, currentMillis/1000, true);
   lcd.write(buffer);
   
   if ((unsigned long)(currentMillis - previousMillis)/1000 >= resetTime) {
