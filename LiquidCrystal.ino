@@ -45,19 +45,18 @@
 #include "music.h"
 #include "helper.h"
 
+// change this to whichever pin you want to use
+int buzzer = 8;
+
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-const int resetTime = 3600;
+const int resetTime = 13;
 unsigned long previousMillis = 0;
 
-// change this to whichever pin you want to use
-int buzzer = 8;
-
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
-char buffer[8];
 
 void setup()
 {
@@ -71,18 +70,9 @@ void setup()
 
 void loop()
 {
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  unsigned long currentMillis = millis();
-  // print the number of seconds since rollover:
-  setTimeBuffer(buffer, (currentMillis - previousMillis) / 1000, false);
-  lcd.write(buffer);
-  //lcd.print((currentMillis - previousMillis)/1000);
-  lcd.setCursor(8, 1);
+  displayTimer(&lcd, previousMillis);
 
-  setTimeBuffer(buffer, currentMillis / 1000, true);
-  lcd.write(buffer);
+  unsigned long currentMillis = millis();
 
   if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
   {
