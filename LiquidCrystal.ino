@@ -58,6 +58,7 @@ unsigned long previousMillis = 0;
                                               
                                               Robson Couto, 2019
 */
+#pragma region Note
 #define NOTE_B0 31
 #define NOTE_C1 33
 #define NOTE_CS1 35
@@ -148,8 +149,7 @@ unsigned long previousMillis = 0;
 #define NOTE_D8 4699
 #define NOTE_DS8 4978
 #define REST 0
-
-#define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
+#pragma endregion Note
 
 // change this to whichever pin you want to use
 int buzzer = 8;
@@ -254,6 +254,7 @@ int melody_HappyBirthDay[] = {
 };
 
 int divider = 0, noteDuration = 0;
+#define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
 char buffer[8];
 
 void playTheTone(int melody[], int sizeOfMelody, int tempo)
@@ -299,15 +300,6 @@ void playTheTone(int melody[], int sizeOfMelody, int tempo)
   }
 }
 
-void clearLCDLine(int line)
-{
-  for (int n = 0; n < 16; n++)
-  { // 20 indicates symbols in line. For 2x16 LCD write - 16
-    lcd.setCursor(n, line);
-    lcd.print(" ");
-  }
-}
-
 void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
 {
   uint8_t hours, minutes;
@@ -317,6 +309,15 @@ void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
     sprintf(buffer, "%02u:%02u:%02u", hours, minutes % 60, seconds % 60);
   else
     sprintf(buffer, "%02u:%02u", minutes, seconds % 60);
+}
+
+void clearLCDLine(int line)
+{
+  for (int n = 0; n < 16; n++)
+  { // 20 indicates symbols in line. For 2x16 LCD write - 16
+    lcd.setCursor(n, line);
+    lcd.print(" ");
+  }
 }
 
 void setup()
@@ -348,7 +349,7 @@ void loop()
   {
     previousMillis = currentMillis;
     lcd.setCursor(0, 1);
-    lcd.print("It's Tea Time!");
+    lcd.print(" It's Tea Time! ");
     playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180);
     //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140);
     clearLCDLine(1);
