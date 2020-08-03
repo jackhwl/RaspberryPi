@@ -59,15 +59,6 @@ int buzzer = 8;
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
 char buffer[8];
 
-void clearLCDLine(int line)
-{
-  for (int n = 0; n < 16; n++)
-  { // 20 indicates symbols in line. For 2x16 LCD write - 16
-    lcd.setCursor(n, line);
-    lcd.print(" ");
-  }
-}
-
 void setup()
 {
   // set up the LCD's number of columns and rows:
@@ -100,6 +91,6 @@ void loop()
     lcd.print(" It's Tea Time! ");
     playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
     //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
-    clearLCDLine(1);
+    clearLCDLine(&lcd, 1);
   }
 }

@@ -6,3 +6,4 @@
 * [The Crackerjoke-a-tron](https://www.raspberrypi.org/blog/the-crackerjoke-a-tron/)
 * [How to Connect a Liquid Crystal Display up to the Arduino](https://www.youtube.com/watch?v=z-j1j6XIUFI&t=128s)
 * [Build Seven Segment LED clock with Arduino and DS3231](https://www.youtube.com/watch?v=qB0drI56zGE)
+* [lcd reference](https://forum.arduino.cc/index.php?topic=185613.0)
