@@ -247,6 +247,15 @@ void setup() {
   pinMode(buzzer, OUTPUT);
 }
 
+char getNormalTime(unsigned long seconds){
+  char buffer [10];
+  uint8_t hours, minutes;
+  minutes = seconds / 60;
+  hours = minutes / 60;
+  sprintf (buffer, "%02u:%02u:%02u", hours, minutes, seconds%60);
+  return buffer;
+}
+
 void loop() {
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
@@ -255,7 +264,15 @@ void loop() {
   // print the number of seconds since rollover:
   lcd.print((currentMillis - previousMillis)/1000);
   lcd.setCursor(8, 1);
-  lcd.print(currentMillis/1000);
+
+  char buffer [10];
+  uint8_t hours, minutes, seconds;
+  seconds = currentMillis/1000;
+  minutes = seconds / 60;
+  hours = minutes / 60;
+  sprintf (buffer, "%02u:%02u:%02u", hours, minutes, seconds%60);
+
+  lcd.write(buffer);
   
   if ((unsigned long)(currentMillis - previousMillis)/1000 >= resetTime) {
     previousMillis = currentMillis;
