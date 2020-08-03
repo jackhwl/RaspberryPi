@@ -308,16 +308,6 @@ void clearLCDLine(int line)
   }
 }
 
-void setup()
-{
-  // set up the LCD's number of columns and rows:
-  lcd.begin(16, 2);
-  // Print a message to the LCD.
-  lcd.print("Hello viGlobal!");
-
-  pinMode(buzzer, OUTPUT);
-}
-
 void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
 {
   uint8_t hours, minutes;
@@ -327,6 +317,16 @@ void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
     sprintf(buffer, "%02u:%02u:%02u", hours, minutes % 60, seconds % 60);
   else
     sprintf(buffer, "%02u:%02u", minutes, seconds % 60);
+}
+
+void setup()
+{
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+  // Print a message to the LCD.
+  lcd.print("Hello viGlobal!");
+
+  pinMode(buzzer, OUTPUT);
 }
 
 void loop()
