@@ -254,6 +254,8 @@ void loop() {
   unsigned long currentMillis = millis();
   // print the number of seconds since rollover:
   lcd.print((currentMillis - previousMillis)/1000);
+  lcd.setCursor(8, 1);
+  lcd.print(currentMillis/1000);
   
   if ((unsigned long)(currentMillis - previousMillis)/1000 >= resetTime) {
     previousMillis = currentMillis;
