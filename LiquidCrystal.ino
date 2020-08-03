@@ -43,6 +43,7 @@
 // include the library code:
 #include <LiquidCrystal.h>
 #include "music.h"
+#include "helper.h"
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -57,17 +58,6 @@ int buzzer = 8;
 
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
 char buffer[8];
-
-void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
-{
-  uint8_t hours, minutes;
-  minutes = seconds / 60;
-  hours = minutes / 60;
-  if (withHour)
-    sprintf(buffer, "%02u:%02u:%02u", hours, minutes % 60, seconds % 60);
-  else
-    sprintf(buffer, "%02u:%02u", minutes, seconds % 60);
-}
 
 void clearLCDLine(int line)
 {
