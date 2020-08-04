@@ -4,7 +4,7 @@ void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
 {
     uint8_t hours, minutes, remainSeconds;
     hours = seconds / 3600;
-    remainSeconds = seconds - hours * 3600;
+    remainSeconds = seconds % 3600;
     minutes = remainSeconds / 60;
     if (withHour)
         sprintf(buffer, "%02u:%02u:%02u", hours, minutes, seconds % 60);
