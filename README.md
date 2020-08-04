@@ -8,4 +8,4 @@
 * [Build Seven Segment LED clock with Arduino and DS3231](https://www.youtube.com/watch?v=qB0drI56zGE)
 * [lcd reference](https://forum.arduino.cc/index.php?topic=185613.0)
 
-![alt text](./lcd.png "lcd")
+![lcd](./img/lcd.png "lcd")
