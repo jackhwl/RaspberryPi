@@ -54,7 +54,7 @@ const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 const int resetTime = 3600;
-unsigned long previousMillis = 0;
+unsigned long previousMillis = 0, previousMillis2 = 0;
 
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
 
@@ -74,11 +74,20 @@ void loop()
 
   if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
   {
-    previousMillis = currentMillis;
     lcd.setCursor(0, 1);
+    previousMillis = currentMillis;
+    previousMillis2 = previousMillis;
     lcd.print(" It's Tea Time! ");
+    playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
+    clearLCDLine(&lcd, 1);
+  }
+
+  if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
+  {
+    lcd.setCursor(0, 1);
+    previousMillis2 = currentMillis;
+    lcd.print("It's Coffee Time");
     playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
-    //playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
     clearLCDLine(&lcd, 1);
   }
 }
