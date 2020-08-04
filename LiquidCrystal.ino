@@ -53,7 +53,7 @@ int buzzer = 8;
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-const int resetTime = 13;
+const int resetTime = 3600;
 unsigned long previousMillis = 0;
 
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
