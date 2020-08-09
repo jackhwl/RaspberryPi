@@ -52,7 +52,7 @@ Helper helper;
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 
-const int resetTime = 6;
+const int resetTime = 16;
 unsigned long previousMillis = 0, previousMillis2 = 0;
 
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
@@ -79,17 +79,19 @@ void loop()
     // lcd.setCursor(0, 1);
     // lcd.print(" It's Tea Time! ");
     // playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
-    // helper.clearLCDLine(&lcd, 1);
+    delay(1000);
+    helper.clearLCDLine(1);
   }
 
   if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
   {
     helper.display(1, "It's Coffee Time");
-    previousMillis2 = previousMillis;
+    previousMillis2 = currentMillis;
     //   lcd.setCursor(0, 1);
     //   previousMillis2 = currentMillis;
     //   lcd.print("It's Coffee Time");
     //   playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
-    //   helper.clearLCDLine(&lcd, 1);
+    delay(1000);
+    helper.clearLCDLine(1);
   }
 }
