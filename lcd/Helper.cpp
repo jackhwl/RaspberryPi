@@ -1,11 +1,11 @@
 #include "Helper.h"
 
-Helper::Helper(byte pin)
+Helper::Helper()
 {
     // Use 'this->' to make the difference between the
     // 'pin' attribute of the class and the
     // local variable 'pin' created from the parameter.
-    this->pin = pin;
+    //this->pin = pin;
     init();
 }
 

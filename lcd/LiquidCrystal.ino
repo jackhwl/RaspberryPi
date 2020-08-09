@@ -46,7 +46,7 @@
 #include "Helper.h"
 
 #define BUZZER_PIN 8
-Helper helper(BUZZER_PIN);
+Helper helper;
 
 // change this to whichever pin you want to use
 // initialize the library by associating any needed LCD interface pin

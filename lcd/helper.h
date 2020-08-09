@@ -11,10 +11,8 @@ private:
     byte pin;
 
 public:
-    Helper(byte pin);
+    Helper();
     void init();
-    //void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour);
-    //void displayTimer();
     void displayTimer(LiquidCrystal *lcd, unsigned long previousMillis);
     void clearLCDLine(LiquidCrystal *lcd, int line);
 };
