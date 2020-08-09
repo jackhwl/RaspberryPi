@@ -9,12 +9,13 @@ class Helper
 
 private:
     byte pin;
+    LiquidCrystal lcd;
 
 public:
     Helper();
     void init();
-    void displayTimer(LiquidCrystal *lcd, unsigned long previousMillis);
-    void clearLCDLine(LiquidCrystal *lcd, int line);
+    void displayTimer(unsigned long previousMillis);
+    //void clearLCDLine(LiquidCrystal *lcd, int line);
 };
 
 #endif

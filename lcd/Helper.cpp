@@ -1,17 +1,27 @@
 #include "Helper.h"
+#include <LiquidCrystal.h>
 
-Helper::Helper()
+#define RS_PIN 12
+#define EN_PIN 11
+#define D4_PIN 5
+#define D5_PIN 4
+#define D6_PIN 3
+#define D7_PIN 2
+
+Helper::Helper() : lcd(RS_PIN, EN_PIN, D4_PIN, D5_PIN, D6_PIN, D7_PIN)
 {
     // Use 'this->' to make the difference between the
     // 'pin' attribute of the class and the
     // local variable 'pin' created from the parameter.
     //this->pin = pin;
+    //const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+    //LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
     init();
 }
 
 void Helper::init()
 {
-    // lcd.begin(16, 2);
+    lcd.begin(16, 2);
 
     // pinMode(pin, OUTPUT);
 }
@@ -52,29 +62,29 @@ void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
 //     LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 // }
 
-void Helper::displayTimer(LiquidCrystal *lcd, unsigned long previousMillis)
+void Helper::displayTimer(unsigned long previousMillis)
 {
     char buffer[8];
     unsigned long currentMillis = millis();
 
-    lcd->setCursor(0, 0);
-    lcd->print("Hello viGlobal!");
+    lcd.setCursor(0, 0);
+    lcd.print("Hello viGlobal!");
 
-    lcd->setCursor(0, 1);
+    lcd.setCursor(0, 1);
     // print the number of seconds since rollover:
     setTimeBuffer(buffer, (currentMillis - previousMillis) / 1000, false);
-    lcd->write(buffer);
+    lcd.write(buffer);
 
-    lcd->setCursor(8, 1);
+    lcd.setCursor(8, 1);
     setTimeBuffer(buffer, currentMillis / 1000, true);
-    lcd->write(buffer);
+    lcd.write(buffer);
 }
 
-void Helper::clearLCDLine(LiquidCrystal *lcd, int line)
-{
-    for (int n = 0; n < 16; n++)
-    { // 20 indicates symbols in line. For 2x16 LCD write - 16
-        lcd->setCursor(n, line);
-        lcd->print(" ");
-    }
-}
+// void Helper::clearLCDLine(LiquidCrystal *lcd, int line)
+// {
+//     for (int n = 0; n < 16; n++)
+//     { // 20 indicates symbols in line. For 2x16 LCD write - 16
+//         lcd->setCursor(n, line);
+//         lcd->print(" ");
+//     }
+// }
