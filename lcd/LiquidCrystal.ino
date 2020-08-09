@@ -40,29 +40,22 @@
 
 */
 
-// include the library code:
-// #include <LiquidCrystal.h>
-#include "music.h"
+#include "Music.h"
 #include "Helper.h"
 
 #define BUZZER_PIN 8
 Helper helper;
+Music music(BUZZER_PIN);
 
 // change this to whichever pin you want to use
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 
-const int resetTime = 16;
+const int resetTime = 3600;
 unsigned long previousMillis = 0, previousMillis2 = 0;
-
-#define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
 
 void setup()
 {
-  // set up the LCD's number of columns and rows:
-  //lcd.begin(16, 2);
-
-  pinMode(BUZZER_PIN, OUTPUT);
 }
 
 void loop()
@@ -76,10 +69,7 @@ void loop()
     helper.display(1, " It's Tea Time! ");
     previousMillis = currentMillis;
     previousMillis2 = previousMillis;
-    // lcd.setCursor(0, 1);
-    // lcd.print(" It's Tea Time! ");
-    // playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
-    delay(1000);
+    music.playMusic(2);
     helper.clearLCDLine(1);
   }
 
@@ -87,11 +77,7 @@ void loop()
   {
     helper.display(1, "It's Coffee Time");
     previousMillis2 = currentMillis;
-    //   lcd.setCursor(0, 1);
-    //   previousMillis2 = currentMillis;
-    //   lcd.print("It's Coffee Time");
-    //   playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
-    delay(1000);
+    music.playMusic(1);
     helper.clearLCDLine(1);
   }
 }

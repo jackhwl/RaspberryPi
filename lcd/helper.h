@@ -6,7 +6,6 @@
 
 class Helper
 {
-
 private:
     LiquidCrystal lcd;
 
