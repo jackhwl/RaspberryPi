@@ -43,11 +43,12 @@
 // include the library code:
 #include <LiquidCrystal.h>
 #include "music.h"
-#include "helper.h"
+#include "Helper.h"
+
+#define BUZZER_PIN 8
+Helper helper(BUZZER_PIN);
 
 // change this to whichever pin you want to use
-int buzzer = 8;
-
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -63,31 +64,31 @@ void setup()
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
 
-  pinMode(buzzer, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
 }
 
 void loop()
 {
-  displayTimer(&lcd, previousMillis);
+  helper.displayTimer(&lcd, previousMillis);
 
-  unsigned long currentMillis = millis();
+  // unsigned long currentMillis = millis();
 
-  if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
-  {
-    lcd.setCursor(0, 1);
-    previousMillis = currentMillis;
-    previousMillis2 = previousMillis;
-    lcd.print(" It's Tea Time! ");
-    playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
-    clearLCDLine(&lcd, 1);
-  }
+  // if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
+  // {
+  //   lcd.setCursor(0, 1);
+  //   previousMillis = currentMillis;
+  //   previousMillis2 = previousMillis;
+  //   lcd.print(" It's Tea Time! ");
+  //   playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
+  //   helper.clearLCDLine(&lcd, 1);
+  // }
 
-  if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
-  {
-    lcd.setCursor(0, 1);
-    previousMillis2 = currentMillis;
-    lcd.print("It's Coffee Time");
-    playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
-    clearLCDLine(&lcd, 1);
-  }
+  // if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
+  // {
+  //   lcd.setCursor(0, 1);
+  //   previousMillis2 = currentMillis;
+  //   lcd.print("It's Coffee Time");
+  //   playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
+  //   helper.clearLCDLine(&lcd, 1);
+  // }
 }
