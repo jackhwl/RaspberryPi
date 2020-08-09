@@ -198,6 +198,14 @@ int melody_HappyBirthDay[] = {
 
 };
 
+typedef struct
+{
+    int tempo;
+} musicRepo;
+
+musicRepo musicRepoData[] =
+    {{180}, {140}};
+
 int divider = 0, noteDuration = 0;
 
 void playTheTone(int melody[], int sizeOfMelody, int tempo, int buzzer)
