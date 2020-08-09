@@ -51,10 +51,8 @@ Helper helper;
 // change this to whichever pin you want to use
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
-//const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-//LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-const int resetTime = 3600;
+const int resetTime = 6;
 unsigned long previousMillis = 0, previousMillis2 = 0;
 
 #define ELEMENTSIZE(x) (sizeof(x) / sizeof(x[0]))
@@ -71,24 +69,27 @@ void loop()
 {
   helper.displayTimer(previousMillis);
 
-  // unsigned long currentMillis = millis();
+  unsigned long currentMillis = millis();
 
-  // if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
-  // {
-  //   lcd.setCursor(0, 1);
-  //   previousMillis = currentMillis;
-  //   previousMillis2 = previousMillis;
-  //   lcd.print(" It's Tea Time! ");
-  //   playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
-  //   helper.clearLCDLine(&lcd, 1);
-  // }
+  if ((unsigned long)(currentMillis - previousMillis) / 1000 >= resetTime)
+  {
+    helper.display(1, " It's Tea Time! ");
+    previousMillis = currentMillis;
+    previousMillis2 = previousMillis;
+    // lcd.setCursor(0, 1);
+    // lcd.print(" It's Tea Time! ");
+    // playTheTone(melody_HappyBirthDay, ELEMENTSIZE(melody_HappyBirthDay), 140, buzzer);
+    // helper.clearLCDLine(&lcd, 1);
+  }
 
-  // if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
-  // {
-  //   lcd.setCursor(0, 1);
-  //   previousMillis2 = currentMillis;
-  //   lcd.print("It's Coffee Time");
-  //   playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
-  //   helper.clearLCDLine(&lcd, 1);
-  // }
+  if ((unsigned long)(currentMillis - previousMillis2) / 1000 >= resetTime / 2)
+  {
+    helper.display(1, "It's Coffee Time");
+    previousMillis2 = previousMillis;
+    //   lcd.setCursor(0, 1);
+    //   previousMillis2 = currentMillis;
+    //   lcd.print("It's Coffee Time");
+    //   playTheTone(melody_Nokia, ELEMENTSIZE(melody_Nokia), 180, buzzer);
+    //   helper.clearLCDLine(&lcd, 1);
+  }
 }

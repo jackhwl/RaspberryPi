@@ -22,8 +22,6 @@ Helper::Helper() : lcd(RS_PIN, EN_PIN, D4_PIN, D5_PIN, D6_PIN, D7_PIN)
 void Helper::init()
 {
     lcd.begin(16, 2);
-
-    // pinMode(pin, OUTPUT);
 }
 
 void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
@@ -61,6 +59,11 @@ void setTimeBuffer(char *buffer, unsigned long seconds, bool withHour)
 //     const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 //     LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 // }
+void Helper::display(byte line, String str)
+{
+    lcd.setCursor(0, line);
+    lcd.print(str);
+}
 
 void Helper::displayTimer(unsigned long previousMillis)
 {
@@ -80,11 +83,11 @@ void Helper::displayTimer(unsigned long previousMillis)
     lcd.write(buffer);
 }
 
-// void Helper::clearLCDLine(LiquidCrystal *lcd, int line)
-// {
-//     for (int n = 0; n < 16; n++)
-//     { // 20 indicates symbols in line. For 2x16 LCD write - 16
-//         lcd->setCursor(n, line);
-//         lcd->print(" ");
-//     }
-// }
+void Helper::clearLCDLine(byte line)
+{
+    for (byte n = 0; n < 16; n++)
+    { // 20 indicates symbols in line. For 2x16 LCD write - 16
+        lcd.setCursor(n, line);
+        lcd.print(" ");
+    }
+}
