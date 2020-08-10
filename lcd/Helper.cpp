@@ -10,12 +10,6 @@
 
 Helper::Helper() : lcd(RS_PIN, EN_PIN, D4_PIN, D5_PIN, D6_PIN, D7_PIN)
 {
-    // Use 'this->' to make the difference between the
-    // 'pin' attribute of the class and the
-    // local variable 'pin' created from the parameter.
-    //this->pin = pin;
-    //const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-    //LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
     init();
 }
 

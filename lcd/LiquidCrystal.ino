@@ -57,6 +57,10 @@ void setup()
 
 void loop()
 {
+  // helper.displayTimer();
+  // helper.display(" It's Tea Time! ", resetTime);
+  // helper.display("It's Coffee Time", resetTime / 2);
+
   helper.displayTimer(previousMillis);
 
   unsigned long currentMillis = millis();
