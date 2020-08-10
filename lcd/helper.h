@@ -13,7 +13,7 @@ public:
     Helper();
     void init();
     void displayTimer(unsigned long previousMillis);
-    void display(byte line, String str);
+    void display(byte line, const char *str);
     void clearLCDLine(byte line);
 };
 

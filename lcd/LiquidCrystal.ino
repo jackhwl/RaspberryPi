@@ -40,16 +40,13 @@
 
 */
 
-#include "Music.h"
 #include "Helper.h"
+#include "Music.h"
 
 #define BUZZER_PIN 8
+
 Helper helper;
 Music music(BUZZER_PIN);
-
-// change this to whichever pin you want to use
-// initialize the library by associating any needed LCD interface pin
-// with the arduino pin number it is connected to
 
 const int resetTime = 3600;
 unsigned long previousMillis = 0, previousMillis2 = 0;
