@@ -15,9 +15,11 @@ void testLib::begin(int interruptPin)
 
     pointerToClass = this; // assign current instance to pointer (IMPORTANT!!!)
     attachInterrupt(digitalPinToInterrupt(interruptPin), outsideInterruptHandler, CHANGE);
+
+    localInterruptPin = interruptPin;
 }
 
 void testLib::classInterruptHandler(void)
 {
-    // TO DO: call the... callback function
+    localPointerToCallback(digitalRead(localInterruptPin));
 }
