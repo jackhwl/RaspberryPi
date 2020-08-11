@@ -42,17 +42,32 @@
 
 #include "Helper.h"
 #include "Music.h"
+#include "testlib.h"
 
 #define BUZZER_PIN 8
+const int pin = 2;
 
 Helper helper;
 Music music(BUZZER_PIN);
+testLib myLib; // object instance
+
+void writePinStateToSerial(const int state)
+{
+  Serial.print("Pin ");
+  Serial.print(pin, DEC);
+  Serial.print(" state is: ");
+  Serial.println(state ? "HIGH" : "LOW");
+}
 
 const int resetTime = 3600;
 unsigned long previousMillis = 0, previousMillis2 = 0;
 
 void setup()
 {
+  Serial.begin(115200);
+
+  myLib.begin(pin);
+  myLib.setCallback(writePinStateToSerial);
 }
 
 void loop()
