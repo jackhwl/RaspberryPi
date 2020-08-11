@@ -51,16 +51,19 @@ Helper helper;
 Music music(BUZZER_PIN);
 testLib myLib; // object instance
 
+const int resetTime = 3600;
+unsigned long previousMillis = 0, previousMillis2 = 0;
+
 void writePinStateToSerial(const int state)
 {
+  unsigned long currentMillis = millis();
+  previousMillis = currentMillis;
+  previousMillis2 = currentMillis;
   Serial.print("Pin ");
   Serial.print(pin, DEC);
   Serial.print(" state is: ");
   Serial.println(state ? "HIGH" : "LOW");
 }
-
-const int resetTime = 3600;
-unsigned long previousMillis = 0, previousMillis2 = 0;
 
 void setup()
 {
