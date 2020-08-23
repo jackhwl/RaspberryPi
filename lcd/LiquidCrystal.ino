@@ -45,7 +45,7 @@
 #include "testlib.h"
 
 #define BUZZER_PIN 8
-const int pin = 2;
+#define INTERRUPT_PIN 2
 
 Helper helper;
 Music music(BUZZER_PIN);
@@ -60,7 +60,7 @@ void writePinStateToSerial(const int state)
   previousMillis = currentMillis;
   previousMillis2 = currentMillis;
   Serial.print("Pin ");
-  Serial.print(pin, DEC);
+  Serial.print(INTERRUPT_PIN, DEC);
   Serial.print(" state is: ");
   Serial.println(state ? "HIGH" : "LOW");
 }
@@ -69,7 +69,7 @@ void setup()
 {
   Serial.begin(115200);
 
-  myLib.begin(pin);
+  myLib.begin(INTERRUPT_PIN);
   myLib.setCallback(writePinStateToSerial);
 }
 
