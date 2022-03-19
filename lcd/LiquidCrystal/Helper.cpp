@@ -65,7 +65,7 @@ void Helper::displayTimer(unsigned long previousMillis)
     unsigned long currentMillis = millis();
 
     lcd.setCursor(0, 0);
-    lcd.print("Hello Wenlin17!");
+    lcd.print("Hello Wenlin!");
 
     lcd.setCursor(0, 1);
     // print the number of seconds since rollover:
