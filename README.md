@@ -24,3 +24,5 @@ Type "help", "copyright", "credits" or "license" for more information.
 * [callback](https://www.onetransistor.eu/2019/05/arduino-class-interrupts-and-callbacks.html)
 * [Interrupt Tutorial](http://www.gammon.com.au/forum/?id=11488)
 ![lcd](./img/lcd.png "lcd")
+* [Problem installing Anydesk on Raspberry Pi Debian OS 11 bullseye](https://www.youtube.com/watch?v=v7gHA-Laf4k)
+
