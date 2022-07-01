@@ -23,6 +23,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 * [10 points](https://roboticsbackend.com/the-arduino-language-in-10-points/)
 * [callback](https://www.onetransistor.eu/2019/05/arduino-class-interrupts-and-callbacks.html)
 * [Interrupt Tutorial](http://www.gammon.com.au/forum/?id=11488)
-![lcd](./img/lcd.png "lcd")
+![lcd](./img/lcd.jpg "lcd")
 * [Problem installing Anydesk on Raspberry Pi Debian OS 11 bullseye](https://www.youtube.com/watch?v=v7gHA-Laf4k)
 
